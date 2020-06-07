@@ -9,9 +9,9 @@ module Top100Ranking
         end
 
         def find_products(category_id:, page: 1)
-            params = { server_queue_name: SERVER_QUEUE_NAME, 
+            payload = { server_queue_name: SERVER_QUEUE_NAME, 
                        category_id: category_id, page: page }
-            response = client.rpc("find_products", params)
+            response = client.rpc("find_products", payload)
             finalize_amqp
             response
         end

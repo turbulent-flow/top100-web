@@ -6,9 +6,9 @@ module AMQP
             @channel = connection.create_channel
         end
 
-         # params e.g.,
+         # payload e.g.,
          # { server_queue_name: SERVER_QUEUE_NAME, category_id: category_id, page: page }
-        def rpc(action, **params)
+        def rpc(action, payload)
             exchange = channel.default_exchange
             mutex = Mutex.new
             condition = ConditionVariable.new
@@ -21,12 +21,18 @@ module AMQP
                  mutex.synchronize { condition.signal }
             end
             correlation_id = generate_uuid
-            message = "#{action}/#{params[:category_id].to_s}/#{params[:page]}"
-            options = { routing_key:  params[:server_queue_name], correlation_id: correlation_id,
+            message = "#{action}/#{payload[:category_id].to_s}/#{payload[:page]}"
+            options = { routing_key:  payload[:server_queue_name], correlation_id: correlation_id,
                         reply_to: reply_queue.name, content_type:  "application/json" }
             exchange.publish(message, options)
-             # wait for the signal to continue the execution
-             mutex.synchronize { condition.wait(mutex) }
+             begin
+                 Timeout::timeout(5) { 
+                    # wait for the signal to continue the execution
+                    mutex.synchronize { condition.wait(mutex) }
+                  }
+             rescue Timeout::Error => _
+                 raise "Unable to call #{action.inspect} with #{payload.inspect}: Time out!"
+             end
              response
         end
 
