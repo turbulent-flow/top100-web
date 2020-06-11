@@ -2,7 +2,9 @@
 
     <!-- Slidebar -->
     <div id="slidebar" class="slidebar">
-        <div class="slidebar-header">TOP100</div>
+        <div class="slidebar-header">
+            <a href="/">TOP100</a>
+        </div>
         <% if @data["root_category"].present? %>
             <a class="root-category" href="/categories/<%= @data["root_category"]["id"] %>/page/1"><%= @data["root_category"]["name"] %></a>
             <ul>
