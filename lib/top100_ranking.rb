@@ -1,5 +1,7 @@
 # The web client communicates with the microserver `top100-ranking` by useing RPC(remote procedure call) over the rabbitmq.
 
+require "#{Rails.root}/lib/amqp"
+
 module Top100Ranking
     SERVER_QUEUE_NAME = "rpc_queue".freeze
 
@@ -14,14 +16,12 @@ module Top100Ranking
             response = client.rpc("find_rankings", payload)
         end
 
-        private
-
-        def finalize_amqp
+        def finalize
             client.stop
         end
+
+        private
 
         attr_reader :client
     end
 end
-
-require "./lib/amqp"
