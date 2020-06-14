@@ -6,8 +6,8 @@ class DashboardController < ApplicationController
     after_action :finalize
 
     def index
-        category_id = params[:category_id].present? ?  params[:category_id] : 1
-        page = params[:page].present? ? params[:page] : 1
+        category_id = params[:category_id].present? ?  params[:category_id].to_i : 1
+        page = params[:page].present? ? params[:page].to_i : 1
         @client = Top100Ranking::Client.new
         results = @client.find_rankings(category_id: category_id, page: page)
         @data = results["data"]
