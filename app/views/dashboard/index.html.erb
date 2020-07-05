@@ -65,7 +65,7 @@
             <% if @data["products"].present? %>
                 <% @data["products"].each do |product| %>
                     <div class="product-item">
-                        <img src="https://images-na.ssl-images-amazon.com/images/I/6182S7MYC2L._AC_UL200_SR200,200_.jpg">
+                        <%= customize_image_tag(product["image_path"]) %>
                         <p data-mark="product-item-<%= product["rank"] %>">
                             #<span class="product-rank"><%= product["rank"] %></span>: 
                             <span class="product-name"><%= product["name"] %></span>
