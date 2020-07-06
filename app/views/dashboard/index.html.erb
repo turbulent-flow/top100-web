@@ -65,7 +65,7 @@
             <% if @data["products"].present? %>
                 <% @data["products"].each do |product| %>
                     <div class="product-item">
-                        <%= customize_image_tag(product["image_path"]) %>
+                        <%= image_tag("#{ENV["CLOUDFRONT_S3_ENDPOINT"]}/#{product["image_path"]}")%>
                         <p data-mark="product-item-<%= product["rank"] %>">
                             #<span class="product-rank"><%= product["rank"] %></span>: 
                             <span class="product-name"><%= product["name"] %></span>
