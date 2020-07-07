@@ -1,7 +1,7 @@
 module AMQP
     class Client
         def initialize
-            @connection = Bunny.new
+            @connection = Bunny.new("#{ENV["CLOUDAMQP_URL"]}")
             connection.start
             @channel = connection.create_channel
         end
