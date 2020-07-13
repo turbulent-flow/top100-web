@@ -75,6 +75,35 @@
             <% end %>
         </div>
 
+        <!-- Greeetings -->
+         <% if @data["selected_category_name"] == "Any Department" %>
+            <div id="greetings">
+                <div class="row">
+                    <div class="col">
+                        Hi, welcome to the world of Top100!
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        You can select the category from the right menu, or click the button above to browser the entries which you want to loook at. 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col"></div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Regards,
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Meng Liu
+                    </div>
+                </div>
+            </div>
+         <% end %>
+
         <!-- Pagination -->
         <% if @data["products"].present? %>
             <nav aria-label="Page navigation">

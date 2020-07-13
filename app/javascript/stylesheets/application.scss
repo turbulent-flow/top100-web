@@ -21,7 +21,6 @@ body {
     align-items: stretch;
 }
 
-
 .slidebar {
     min-width: 250px;
     max-width: 250px;
@@ -123,6 +122,14 @@ nav.navbar {
         text-align: center;
         margin: 0.5rem 0 0 0;
         padding: 0 1rem 0 1rem;
+    }
+}
+
+/** greetings **/
+#greetings {
+    margin-bottom: 768px;
+    .row {
+        margin: 0.5rem 0;
     }
 }
 
