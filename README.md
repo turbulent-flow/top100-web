@@ -1,5 +1,6 @@
 # About this project
-Top100 is a project that presents the top 100 categories in this world.
+Top100 is a project that presents the top 100 categories in this world. 
+
 The explanation of the architecture can be found [here](https://github.com/LiamYabou/top100-scrapy/wiki/Architecture).
 
 ## Top100 Web
